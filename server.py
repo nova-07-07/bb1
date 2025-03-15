@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 TEXT_FOLDER = "txts"  # Folder containing text files
-IMAGE_FOLDER = "I:/bible/static/images"  # Folder containing images
+IMAGE_FOLDER = "static/images"  # Folder containing images
 
 @app.route('/')
 def list_files():
