@@ -5,12 +5,20 @@ import os
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 TEXT_FOLDER = "txts"  # Folder containing text files
-IMAGE_FOLDER = "I:/bible/static"  # Folder containing images
+IMAGE_FOLDER = "I:/bible/static/images"  # Folder containing images
 
 @app.route('/')
 def list_files():
     files = [f for f in os.listdir(TEXT_FOLDER) if f.endswith(".txt")]
     return jsonify(files)
+
+@app.route('/list-images')
+def list_images():
+    if not os.path.exists(IMAGE_FOLDER):
+        return jsonify({"error": "Image folder not found"}), 500
+    files = os.listdir(IMAGE_FOLDER)
+    return jsonify(files)
+
 
 @app.route('/view')
 def view_file():
